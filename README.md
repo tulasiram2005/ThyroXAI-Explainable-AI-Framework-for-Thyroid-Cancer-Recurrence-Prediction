@@ -117,11 +117,13 @@ The **RAG module** further enhances this by retrieving similar past patient case
 Recurrence Prediction: Benign / Malignant
 SHAP-based feature contribution
 Retrieved similar patient cases (RAG-based explanation)
+
 👨‍💻 Authors & Future Work
 Authors
 Bajantri Chikulaguri Tulasi Ram
 Venkata Sai Siddardh Seera
 Vaishnavi Jayaraman (Assistant Professor)
+
 Future Work
 Deep exploration of Advanced RAG pipelines using vector databases (FAISS, ChromaDB)
 Integration of Neural Network architectures for improved representation learning
