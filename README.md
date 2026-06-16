@@ -4,6 +4,47 @@
 
 ---
 
+## 🌐 Web App
+
+This repository now includes a Vercel-ready web interface for ThyroXAI.
+
+The app provides:
+
+- A polished first-screen clinical AI dashboard
+- Interactive patient-risk inputs
+- Browser-side recurrence-risk demo scoring
+- SHAP-style feature impact visualization
+- Retrieval-style similar-case reasoning cards
+- Model performance comparison from the research results
+
+### Run Locally
+
+```bash
+npm run dev
+```
+
+Open `http://localhost:3000`.
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+The production files are generated in `dist/`.
+
+### Deploy on Vercel
+
+Vercel can deploy this project directly from GitHub using:
+
+- Framework preset: `Other`
+- Build command: `npm run build`
+- Output directory: `dist`
+
+The same settings are already captured in `vercel.json`.
+
+---
+
 ## 📌 Overview
 
 ThyroXAI is an end-to-end machine learning framework developed to predict recurrence in differentiated thyroid cancer (DTC) using structured clinical and biochemical data.

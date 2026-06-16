@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ThyroXAI is an explainable AI framework for thyroid cancer recurrence prediction with SHAP and retrieval-based reasoning."
+    />
+    <title>ThyroXAI | Explainable Thyroid Cancer Recurrence AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#app" aria-label="ThyroXAI home">
+        <span class="brand-mark">TX</span>
+        <span>
+          <strong>ThyroXAI</strong>
+          <small>Explainable Clinical AI</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#predictor">Predictor</a>
+        <a href="#explainability">Explainability</a>
+        <a href="#model">Model</a>
+      </nav>
+      <a class="nav-action" href="https://github.com/tulasiram2005/ThyroXAI-Explainable-AI-Framework-for-Thyroid-Cancer-Recurrence-Prediction" target="_blank" rel="noreferrer">
+        GitHub
+      </a>
+    </header>
+
+    <main id="app">
+      <section class="hero">
+        <div class="hero-media" aria-hidden="true">
+          <img src="public/assets/thyroxai-clinical-dashboard.png" alt="" />
+          <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+          <div class="eyebrow">ExtraTrees + SHAP + RAG reasoning</div>
+          <h1>ThyroXAI</h1>
+          <p>
+            An explainable AI framework for differentiated thyroid cancer recurrence prediction, designed to surface risk,
+            influential clinical factors, and similar-case context in one clinician-friendly interface.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#predictor">Open Predictor</a>
+            <a class="secondary-button" href="#model">View Model Results</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="metrics-strip" aria-label="Project highlights">
+        <article>
+          <span>Final Model</span>
+          <strong>ExtraTrees</strong>
+        </article>
+        <article>
+          <span>Accuracy</span>
+          <strong>95.87%</strong>
+        </article>
+        <article>
+          <span>F1 Score</span>
+          <strong>95.52%</strong>
+        </article>
+        <article>
+          <span>Dataset Rows</span>
+          <strong>212,691</strong>
+        </article>
+      </section>
+
+      <section id="predictor" class="workspace">
+        <div class="section-heading">
+          <span>Interactive demo</span>
+          <h2>Patient Risk Console</h2>
+        </div>
+
+        <div class="predictor-grid">
+          <form class="panel input-panel" id="risk-form">
+            <div class="panel-header">
+              <h3>Clinical Inputs</h3>
+              <button class="icon-button" type="button" id="reset-form" aria-label="Reset form" title="Reset form">Reset</button>
+            </div>
+
+            <div class="form-grid">
+              <label>
+                <span>Age</span>
+                <input type="number" name="age" min="1" max="100" value="58" />
+              </label>
+              <label>
+                <span>Gender</span>
+                <select name="gender">
+                  <option>Female</option>
+                  <option>Male</option>
+                </select>
+              </label>
+              <label>
+                <span>TSH Level</span>
+                <input type="number" name="tsh" min="0" max="12" step="0.01" value="7.8" />
+              </label>
+              <label>
+                <span>T3 Level</span>
+                <input type="number" name="t3" min="0" max="4" step="0.01" value="2.1" />
+              </label>
+              <label>
+                <span>T4 Level</span>
+                <input type="number" name="t4" min="0" max="14" step="0.01" value="9.4" />
+              </label>
+              <label>
+                <span>Nodule Size</span>
+                <input type="number" name="nodule" min="0" max="6" step="0.01" value="3.9" />
+              </label>
+              <label>
+                <span>Risk Class</span>
+                <select name="risk">
+                  <option>Low</option>
+                  <option selected>Medium</option>
+                  <option>High</option>
+                </select>
+              </label>
+              <label>
+                <span>Country</span>
+                <select name="country">
+                  <option>India</option>
+                  <option>China</option>
+                  <option>Nigeria</option>
+                  <option>Brazil</option>
+                  <option>Russia</option>
+                  <option>Japan</option>
+                  <option>UK</option>
+                  <option>Germany</option>
+                </select>
+              </label>
+            </div>
+
+            <fieldset class="toggle-group">
+              <legend>Clinical Factors</legend>
+              <label><input type="checkbox" name="family" checked /> Family history</label>
+              <label><input type="checkbox" name="radiation" /> Radiation exposure</label>
+              <label><input type="checkbox" name="iodine" checked /> Iodine deficiency</label>
+              <label><input type="checkbox" name="smoking" /> Smoking</label>
+              <label><input type="checkbox" name="obesity" /> Obesity</label>
+              <label><input type="checkbox" name="diabetes" /> Diabetes</label>
+            </fieldset>
+          </form>
+
+          <aside class="panel output-panel" aria-live="polite">
+            <div class="panel-header">
+              <h3>Prediction</h3>
+              <span class="status-pill" id="risk-label">Elevated</span>
+            </div>
+
+            <div class="gauge-wrap">
+              <div class="gauge" style="--score: 0.68">
+                <span id="risk-score">68%</span>
+              </div>
+              <div>
+                <strong id="diagnosis-text">Malignant recurrence risk signal</strong>
+                <p id="risk-summary">
+                  Risk is driven by nodule size, risk class, TSH level, and iodine deficiency in this demo profile.
+                </p>
+              </div>
+            </div>
+
+            <div class="confidence-row">
+              <span>Benign likelihood <strong id="benign-score">32%</strong></span>
+              <span>Malignant likelihood <strong id="malignant-score">68%</strong></span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="explainability" class="insight-grid">
+        <div class="panel">
+          <div class="panel-header">
+            <h3>SHAP-Style Feature Impact</h3>
+            <span class="mini-label">Local explanation</span>
+          </div>
+          <div class="feature-bars" id="feature-bars"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Retrieved Similar Cases</h3>
+            <span class="mini-label">RAG context</span>
+          </div>
+          <div class="case-list" id="case-list"></div>
+        </div>
+      </section>
+
+      <section id="model" class="model-section">
+        <div class="section-heading">
+          <span>Research results</span>
+          <h2>Model Performance</h2>
+        </div>
+        <div class="model-layout">
+          <div class="panel table-panel">
+            <table>
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Accuracy</th>
+                  <th>Precision</th>
+                  <th>Recall</th>
+                  <th>F1</th>
+                </tr>
+              </thead>
+              <tbody id="model-table"></tbody>
+            </table>
+          </div>
+          <div class="panel pipeline-panel">
+            <h3>Pipeline</h3>
+            <ol class="pipeline">
+              <li><span>01</span> Encode clinical and demographic features</li>
+              <li><span>02</span> Balance classes with SMOTEENN</li>
+              <li><span>03</span> Select features using MI and RFE</li>
+              <li><span>04</span> Train ensemble models and select ExtraTrees</li>
+              <li><span>05</span> Explain predictions with SHAP and similar cases</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <strong>ThyroXAI</strong>
+      <span>Research prototype for explainable recurrence-risk decision support. Not a medical device.</span>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "thyroxai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A Vercel-ready web interface for ThyroXAI, an explainable AI framework for thyroid cancer recurrence prediction.",
+  "scripts": {
+    "dev": "python3 -m http.server 3000",
+    "build": "mkdir -p dist && cp index.html styles.css app.js dist/ && cp -R public dist/public",
+    "preview": "python3 -m http.server 4173 -d dist"
+  },
+  "keywords": [
+    "thyroid-cancer",
+    "explainable-ai",
+    "shap",
+    "clinical-ai",
+    "vercel"
+  ],
+  "license": "MIT"
+}
