@@ -38,6 +38,7 @@
     <main id="app">
       <section class="hero">
         <div class="hero-media" aria-hidden="true">
+          <canvas id="hero-canvas"></canvas>
           <img src="public/assets/thyroxai-clinical-dashboard.png" alt="" />
           <div class="hero-overlay"></div>
         </div>
@@ -233,5 +234,14 @@
     </footer>
 
     <script src="app.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/+esm"
+        }
+      }
+    </script>
+    <script type="module" src="hero-scene.js"></script>
+    <script src="ui-enhancements.js"></script>
   </body>
 </html>
